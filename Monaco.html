@@ -68,26 +68,48 @@
 					]
 				});
 				
+				monaco.editor.defineTheme('net-theme-studio', {
+					base: 'vs-dark',
+					inherit: true,
+					rules: [
+						{ token: 'global', foreground: '84d6f7' }, // fontStyle: "bold"
+						{ token: 'keyword', foreground: 'f86d7c' },
+						{ token: 'comment', foreground: '666666' },
+						{ token: 'number', foreground: 'ffc600' },
+						{ token: 'string', foreground: 'adf195' },
+					]
+				});
+
 				monaco.editor.defineTheme('net-theme-dark', {
 					base: 'vs-dark',
 					inherit: true,
 					rules: [
-						{ token: 'global', foreground: 'FFFFFF', fontStyle: "bold" },
-						{ token: 'keyword', foreground: 'ff6a00', fontStyle: "bold" },
+						{ token: 'global', foreground: '84f78a' }, // fontStyle: "bold"
+						{ token: 'keyword', foreground: 'f8cc6d' },
 						{ token: 'comment', foreground: '666666' },
-						{ token: 'number', foreground: 'ffc600' },
-						{ token: 'string', foreground: 'ff8c3a' },
+						{ token: 'number', foreground: '00c3ff' },
+						{ token: 'string', foreground: 'eff195' },
+					]
+				});
+
+				monaco.editor.defineTheme('net-theme-midnight', {
+					base: 'vs-dark',
+					inherit: true,
+					rules: [
+						{ token: 'global', foreground: '8495f7' }, // fontStyle: "bold"
+						{ token: 'keyword', foreground: 'f36df8' },
+						{ token: 'comment', foreground: '666666' },
+						{ token: 'number', foreground: '00e5ff' },
+						{ token: 'string', foreground: '95f1b2' },
 					]
 				});
 				
 				editor = monaco.editor.create(document.getElementById('container'), {
 					value: [
-						"--[[",
-						"	Lua Script",
-						"--]]",
+						""
 					].join('\n'),
 					language: 'lua',
-					theme: "net-theme-light",
+					theme: "net-theme-studio",
 					folding: true,
 					scrollbar: {
 						verticalHasArrows: true,
@@ -116,9 +138,10 @@
 				SetTheme = function(themeName) {
 					if (themeName == "Dark") {
 						monaco.editor.setTheme("net-theme-dark");
-					}
-					if (themeName == "Light") {
+					} else if (themeName == "Light") {
 						monaco.editor.setTheme("net-theme-light");
+					} else {
+						monaco.editor.setTheme("net-theme-" + themeName);
 					}
 				}
 				
